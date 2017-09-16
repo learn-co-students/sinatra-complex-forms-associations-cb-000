@@ -33,7 +33,8 @@ describe "Pets Controller" do
       @owner2 = Owner.create(:name => "Chris")
       visit '/pets/new'
       fill_in "pet_name", :with => "Michael"
-      check(@owner1.id)
+      # check(@owner1.id) # checkbox
+      choose(@owner1.id)
       click_button "Create Pet"
       @pet = Pet.last
       expect(@pet.name).to eq("Michael")
@@ -56,7 +57,8 @@ describe "Pets Controller" do
       @owner2 = Owner.create(:name => "Kaitlin")
       visit '/pets/new'
       fill_in "pet_name", :with => "Joeseph"
-      check(@owner2.id)
+      # check(@owner2.id) # checkbox
+      choose(@owner2.id) # radio button
       click_button "Create Pet"
       @pet= Pet.last
       expect(page.current_path).to eq("/pets/#{@pet.id}")
