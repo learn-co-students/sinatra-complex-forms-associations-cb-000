@@ -1,1 +1,7 @@
-show.erb
+<html>
+  <h1>Pet Name</h1>
+  <p><%= @pet.name %></p>
+  <br>
+  <h1>Owner Name</h1>
+  <p><%= @pet.owner ? @pet.owner.name : "No Owner" %></p>
+</html>
