@@ -2,12 +2,27 @@
 
 <form action="/owners" method="POST">
   <label>Name:</label>
-  
+
   <br></br>
-  
+
   <input type="text" name="owner[name]">
-  
+
   <br></br>
-  
+
+  <%@pets.each do |pet|%>
+  <!-- what does that name field mean? -->
+  <!-- name field is for gathering the checked ids. params will be based on that -->
+    <input type="checkbox" name="owner[pet_ids][]" value="<%=pet.id%>" id="<%=pet.id%>"><%=pet.name%></input>
+<%end%>
+
+<br></br>
+
+<label>and/or, create a new pet:</label>
+    <br></br>
+    <label>name:</label>
+      <input  type="text" name="pet[name]"></input>
+    <br></br>
+
+
   <input type="submit" value="Create Owner">
 </form>
