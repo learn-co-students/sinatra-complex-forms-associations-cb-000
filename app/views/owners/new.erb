@@ -10,6 +10,8 @@
   <br></br>
 
   <%@pets.each do |pet|%>
+  <!-- what does that name field mean? -->
+  <!-- name field is for gathering the checked ids. params will be based on that -->
     <input type="checkbox" name="owner[pet_ids][]" value="<%=pet.id%>" id="<%=pet.id%>"><%=pet.name%></input>
 <%end%>
 

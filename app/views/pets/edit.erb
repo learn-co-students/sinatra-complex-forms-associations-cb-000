@@ -9,11 +9,29 @@
 
   <br></br>
 
-  <label>Choose an existing pet:</label>
+  <label>Choose an existing owner:</label>
 
   <br></br>
 
 <!--  LF -->
+<%Owner.all.each do |owner| %>
+<!--  name has to refer to what i will grab to update 
+      the pets' owners in the controller.
+-->
+  <!-- <%= owner.pets %> -->
   
+  <!-- <input type="radio" name="owner[name]" id="<%= owner.id%>" value="<%=owner.id%>" <%='checked' if owner.pets.include?(@pet) %>><%=owner.name%></input> -->
+  <input type="radio" name="pet[owner_id]" id="<%= owner.id%>" value="<%=owner.id%>" <%='checked' if owner.pets.include?(@pet) %>><%=owner.name%></input>
+<%end%>
+
+<br></br>
+
+<label>and/or, create a new owner:</label>
+<br></br>
+<label>name:</label>
+  <input  type="text" name="owner[name]" id="owner_name"></input>
+<br></br>
+  
+<input type="submit" value="Update Pet">
 
 </form>
