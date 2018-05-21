@@ -27,15 +27,12 @@ class OwnersController < ApplicationController
     erb :'/owners/show'
   end
 
-  patch '/owners/:id' do
-    binding.pry
-    @owner = Owner.find(params[])
-  end
-
-  helpers do
-    def belongs_to_owner?(pet)
-      @owner.pets.exists?(pet.id) == true
-    end
+  post '/owners/:id' do
+    @owner = Owner.find(params[:id])
+    @owner.update(name: params["owner"]["name"], pet_ids: params["owner"]["pet_ids"])
+    @owner.pets << Pet.create(name: params["pet"]["name"]) if !params["pet"]["name"].empty?
+    @owner.save
+    redirect "/owners/#{@owner.id}"
   end
 
 end
