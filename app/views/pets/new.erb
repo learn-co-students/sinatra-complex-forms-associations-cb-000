@@ -1,1 +1,14 @@
 <h1>Create a new Pet</h1>
+
+<form  action="/pets" method="post">
+  <label for="pet[name]">Name:</label>
+    <input id="pet_name" name="pet[name]" type="text" required>
+    <input type="submit" value="Create Pet">
+
+    <label>and/ or create a new owner:</label>
+    <br></br>
+    <label for="owner[name]">name:</label>
+      <input id="owner_name"  type="text" name="owner[name]">
+    <br></br>
+
+</form>
