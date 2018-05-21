@@ -1,2 +1,16 @@
 <h1>Update Owner</h1>
 
+<form action="/owners/<%=@owner.id%>" method="post">
+  <input name="owner[name]" value="<%=@owner.name%>" required>
+
+  <br></br>
+
+  <h2>Pets</h2>
+
+  <%Pet.all.each do |pet| %>
+    <input type="checkbox" name="owner[pet_ids][]" value="<%=pet.id%>"<%= "checked" if belongs_to_owner?(pet) %>> <%=pet.name%>
+    <br></br>
+  <% end%>
+  <input id="hidden "type="hidden" name="_method" value="patch">
+  <input type="submit" value="Edit Owner">
+</form>
