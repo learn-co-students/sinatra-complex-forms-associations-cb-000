@@ -8,8 +8,8 @@
 
     <label>Choose an owner:</label>
 
-    <%= Owner.all.each do |owner| %>
-      <input checkbo
-    
+    <% Owner.all.each do |owner| %>
+      <input type="checkbox" name="owner_id" value="<%=owner.id%>"><%=owner.name%>
+    <% end %>
     <input type="submit" value="Create Pet">
 </form>
