@@ -6,7 +6,7 @@
 
   <br></br>
 
-  <input id="owner_name" name="owner[name]" required>
+  <input type="text" id="owner_name" name="owner[name]" value="<%=@owner.name%>">
 
   <br></br>
 
@@ -15,13 +15,13 @@
   <br></br>
 
   <%Pet.all.each do |pet| %>
-    <input type="checkbox" name="owner[pet_ids][]" value="<%=pet.id%>"<%= "checked" if @owner.pets.include?(pet) %>> <%=pet.name%>
+    <input type="checkbox" name="owner[pet_ids][]" value="<%=pet.id%>"<%= "checked" if @owner.pets.include?(pet) %>> <%=pet.name%></input>
     <br></br>
   <% end%>
 
   <label>and/ or create a new pet:</label>
   <br></br>
-  <label for="pet[name]">name:</label>
+  <label>name:</label>
     <input id="pet_name"  type="text" name="pet[name]">
   <br></br>
 
