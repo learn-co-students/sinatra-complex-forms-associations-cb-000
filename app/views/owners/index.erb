@@ -3,7 +3,7 @@
 <ul>
   <% @owners.each do |owner| %>
     <li>
-      <p><a href="/owners/<%= owner.id%>"</a><%= owner.name %></p>
+      <p><a href="/owners/<%= owner.id%>"><%= owner.name %></a></p>
     </li>
   <% end %>
 </ul>
