@@ -1,1 +1,12 @@
-index.erb
+<h1>Owners and their pets!</h1>
+<% @owners.reverse.each do |owner| %>
+  <h2><%= owner.name %></h2>
+
+  <% owner.pets.each_with_index do |pet, index| %>
+    <h3><%= index + 1 %>. <%= pet.name %></h3>
+  <% end %>
+
+  <form method="GET" action="/owners/<%= owner.id %>/edit">
+    <input type="submit" value="Edit User">
+  </form>
+<% end %>
