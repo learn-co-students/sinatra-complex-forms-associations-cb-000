@@ -7,12 +7,12 @@ describe "Pets Controller" do
       get '/pets/new'
       expect(last_response.status).to eq(200)
     end
-
+    #
     it " loads form to create a new pet" do
       visit '/pets/new'
       expect(page).to have_field('pet_name')
     end
-
+    #
     it "has a form with a checkbox for existing owners" do
       @owner1 = Owner.create(:name => "Cricky")
       @owner2 = Owner.create(:name => "Chris")
@@ -22,12 +22,13 @@ describe "Pets Controller" do
       expect(page.has_unchecked_field?(@owner2.id)).to eq(true)
     end
 
+    #
     it "has a field for creating a new owner" do
       visit '/pets/new'
       expect(page).to have_field(:owner_name)
     end
 
-
+    #
     it "creates a new pet and associates an existing owner" do
       @owner1 = Owner.create(:name => "Cricky")
       @owner2 = Owner.create(:name => "Chris")
@@ -39,8 +40,8 @@ describe "Pets Controller" do
       expect(@pet.name).to eq("Michael")
       expect(@pet.owner.name).to eq("Cricky")
     end
-
-      it " creates a new pet and a new owner" do
+    #
+    it " creates a new pet and a new owner" do
       visit '/pets/new'
       fill_in "pet_name", :with => "Pippa"
       fill_in "owner_name", :with => "Mary Nelson"
@@ -62,7 +63,7 @@ describe "Pets Controller" do
       expect(page.current_path).to eq("/pets/#{@pet.id}")
     end
   end
-
+  #
   describe "edit action" do
     before(:each) do
       @owner = Owner.create(:name => "Carla")

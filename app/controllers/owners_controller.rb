@@ -11,21 +11,10 @@ class OwnersController < ApplicationController
   end
 
   post '/owners' do
-    @owner = Owner.create(name: params[:owner][:name])
+    @owner = Owner.create(params[:owner])
 
-    if params[:pet][:name] != nil
-      new_pet = Pet.create(name: params[:pet][:name])
-      new_pet.owner = @owner
-      new_pet.save
-    end
-
-    old_pets = params[:owner][:pet_ids]
-    if old_pets != nil
-      old_pets.each do |id|
-        pet = Pet.find(id)
-        pet.owner = @owner
-        pet.save
-      end
+    unless params[:pet][:name].empty?
+      @owner.pets << Pet.create(name: params[:pet][:name])
     end
 
     redirect to "/owners/#{@owner.id}"
@@ -44,23 +33,20 @@ class OwnersController < ApplicationController
 
   patch '/owners/:id/edit' do
     @owner = Owner.find(params[:id])
-    old_pets = params[:owner][:pets_id]
-
-    @owner.name = params[:owner][:pets_id]
+    @owner.name = params[:owner][:name]
     @owner.save
 
+    old_pets = params[:owner][:pets_id]
     if old_pets != nil
       old_pets.each do |id|
-        @pet = Pet.find(id)
-        @pet.owner = @owner
-        @pet.save
+        pet = Pet.find(id)
+        pet.owner = @owner
+        pet.save
       end
     end
 
-    if params[:new_pet] != nil
-      new_pet = Pet.create(name: params[:new_pet])
-      new_pet.owner = @owner
-      new_pet.save
+    unless params[:pet][:name].empty?
+      @owner.pets << Pet.create(name: params[:pet][:name])
     end
 
     redirect to "/owners/#{@owner.id}"
