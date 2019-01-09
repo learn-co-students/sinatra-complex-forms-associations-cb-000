@@ -1,7 +1,7 @@
 <h1>Create a new Pet</h1>
 <form method="POST" action="/pets">
   <label>Pet Name:</label>
-  <input name="pet_name" type="text">
+  <input name="pet[name]" id="pet_name" type="text">
   <br>
 
   <% @owners.each do |owner| %>
@@ -10,7 +10,7 @@
   <br>
 
   <label>New Owner:</label>
-  <input type="text" name="owner_name">
+  <input type="text" id="owner_name" name="new_owner">
 
   <br>
   <input type="submit" value="Create Pet">

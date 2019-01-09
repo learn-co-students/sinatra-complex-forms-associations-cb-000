@@ -33,20 +33,10 @@ class OwnersController < ApplicationController
 
   patch '/owners/:id/edit' do
     @owner = Owner.find(params[:id])
-    @owner.name = params[:owner][:name]
-    @owner.save
-
-    old_pets = params[:owner][:pets_id]
-    if old_pets != nil
-      old_pets.each do |id|
-        pet = Pet.find(id)
-        pet.owner = @owner
-        pet.save
-      end
-    end
+    @owner.update(params[:owner])
 
     unless params[:pet][:name].empty?
-      @owner.pets << Pet.create(name: params[:pet][:name])
+      @owner.pets << Pet.create(params[:pet])
     end
 
     redirect to "/owners/#{@owner.id}"

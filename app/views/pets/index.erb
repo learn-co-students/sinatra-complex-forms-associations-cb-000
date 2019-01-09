@@ -1,4 +1,8 @@
 <h1>Pets and their owner!</h1>
 <% @pets.reverse.each do |pet| %>
 <h2><%= pet.name %> is owned by <%= pet.owner.name %>.</h3>
+<form method="GET" action="/pets/<%= pet.id %>/edit">
+  <input type="hidden" value="patch" name="_method">
+  <input type="submit" value="Edit Pet">
+</form>
 <% end %>
