@@ -1,3 +1,4 @@
 class Pet < ActiveRecord::Base
-  belongs_to :owner
+  has_many :owner_pets
+  has_many :owners, through: :owner_pets
 end
