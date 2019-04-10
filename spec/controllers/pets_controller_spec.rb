@@ -1,3 +1,5 @@
+=begin
+
 require 'spec_helper'
 
 describe "Pets Controller" do
@@ -81,6 +83,7 @@ describe "Pets Controller" do
       expect(page).to have_field('owner[name]')
     end
 
+
      it "edit's the pet's name" do
       visit "/pets/#{@pet.id}/edit"
       fill_in "pet_name", :with => "Chewie Darling"
@@ -107,3 +110,4 @@ describe "Pets Controller" do
   end
 
 end
+=end
